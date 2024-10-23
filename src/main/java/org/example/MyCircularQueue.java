@@ -1,31 +1,59 @@
 package org.example;
 
 public class MyCircularQueue {
+    private int[] queue;
+    private int front;
+    private int rear;
+    private int size;
+    private int capacity;
+
     public MyCircularQueue(int k) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        capacity = k;
+        queue = new int[k];
+        front = 0;
+        rear = -1;
+        size = 0;
     }
 
+
     public boolean enQueue(int value) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (isFull()) {
+            return false; // Queue is full
+        }
+        rear = (rear + 1) % capacity; 
+        queue[rear] = value;
+        size++;
+        return true;
     }
 
     public boolean deQueue() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (isEmpty()) {
+            return false; 
+        }
+        front = (front + 1) % capacity; 
+        size--;
+        return true;
     }
 
     public int Front() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (isEmpty()) {
+            return -1;
+        }
+        return queue[front];
     }
 
     public int Rear() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (isEmpty()) {
+            return -1; 
+        }
+        return queue[rear];
     }
 
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return size == 0;
     }
 
     public boolean isFull() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return size == capacity;
     }
 }
